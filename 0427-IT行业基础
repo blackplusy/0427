@@ -1,0 +1,65 @@
+1.IT行业基础
+a.常见的软件架构
+	微信           c/s   b/s
+	QQ             c/s
+	淘宝           c/s   b/s
+	LOL            c/s
+	美图           c/s   b/s
+	支付宝         c/s   b/s
+	百度地图       c/s   b/s
+	抖音、快手      c/s
+	腾讯视频       c/s   b/s
+	真三国无双     c/s  
+	a.单机软件
+		不需要网络就可以执行的应用程序
+		hackercon  
+		defcon
+	b.b/s架构软件
+		b: 浏览器
+			IE    		UC  猎豹  360  搜狗  世界之窗  傲游 
+			firefox     测试  
+			chrome      开发
+			safari      苹果
+		s: 服务器
+			性能特别牛逼的电脑
+		测试关注点:不同浏览器、不同版本之间的兼容性问题
+	c.c/s架构软件
+		c:客户端
+			PC端      电脑
+			移动端    手机  平板  智能终端
+		s:服务器
+			性能特别牛逼的电脑
+		测试关注点:不同类型操作系统、不同版本的安装和反安装(软件捆绑)和兼容性问题
+2.b/s架构后端组成
+	a.前端
+		html   标记性语言  静态页面(服务器上和网页上一致) html5
+		js     javascript  动态页面(交互)
+			   			   jquery框架
+			   java        后端编程语言
+			   jsp         java server page
+		css    页面美化    
+		ui     用户接口(美工)
+	b.后端
+		开发语言： java php python ruby perl 
+		操作系统
+			unix
+			linux
+			windows
+		web服务器
+			apache
+			nginx
+			tomcat
+			iis
+		数据库服务器
+			mysql
+			oracle
+			sqlserver
+	c.常见搭配
+		操作系统       web服务器      数据库服务器
+		win            apache        mysql
+		                iis          sqlserver
+		               tomcat        mysql/oracle
+		linux 			apache       mysql
+						tomcat       mysql/oracle
+						nginx        mysql
+		
