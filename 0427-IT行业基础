@@ -113,6 +113,60 @@ a.常见的软件架构
 			用户名    : root
 			密码      : root
 			数据库名  ： test
+4.故障排查
+	a.WWW文件夹中是否有ecshop1文件夹
+	b.检查进程和端口
+	c.为了检查电脑中是否有应用占用端口(检测端口冲突)
+		停止phpstudy(apache、mysql是关闭)
+		查看系统中端口(80、3306)
+5.数据库基础
+	a.什么是数据库
+		存储数据的软件
+	b.常见数据库软件
+		关系型数据库
+			informix  IBM+HP  小机  军、政、运、银
+			db2       IBM     军、政、运、银   (3000w+6000w)X4
+			oracle    甲骨文   中大型
+			mysql     甲骨文   互联网公司
+			sqlserver 微软     传统
+		非关系型数据库
+			mongodb     大数据、爬虫  
+			redis       缓存、验证、消息队列
+			cassandra   facebook
+	c.mysql的管理员
+		root
+	d.mysql的基础命令
+		数据库分为数据库软件和数据库数据，常说的数据库是数据库数据
+		mysql数据库是由表组成
+		表是由数据组成
+		d1.mysql的登录
+			1>登录命令(命令提示符)
+				mysql
+					登录本地数据库
+				mysql -u root -p
+					管理员登录本地数据库
+				mysql -h 127.0.0.1 -u root -p
+					管理员登录IP为127.0.0.1的数据库
+			2>登录方式
+				进入到mysql的bin文件夹执行命令
+					d:
+					cd phpStudy\MySQL\bin
+				设置环境变量(重启生效)
+					计算机--属性--高级--环境变量--系统变量--PATH中添加mysql的bin文件夹的路径
+					;D:\phpStudy\MySQL\bin
+					确定--确定--确定
+		d2.基础命令
+			show databases;
+				查看当前有哪些数据库
+			select database();
+				查看当前数据库的名字
+			use test;
+				切换当前数据库为test
+			show tables;
+				查看当前数据库有哪些表
+			select * from ecs_goods\G
+				查看ecs_goods表中所有的数据
+
 
 
 
