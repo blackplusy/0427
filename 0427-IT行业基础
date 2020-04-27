@@ -166,6 +166,44 @@ a.常见的软件架构
 				查看当前数据库有哪些表
 			select * from ecs_goods\G
 				查看ecs_goods表中所有的数据
+	e.表(表格)
+		e1.数据类型
+			数字   123   456   int
+			字符   '123' 'abc' char varchar
+			日期   '1988-01-01' date
+			char varchar区别：
+			char(10)     定长   
+			varchar(10)  变长   
+		e2.表结构的创建
+			语法:
+			create table 表 (
+				列 数据类型，
+				列 数据类型,
+				。。。。
+				);
+			需求:创建商品表(goods),商品名称(name) 字符类型，售价(price) 数字类型，出厂日期(ddate) 日期类型
+			create table goods(
+				name char(20),
+				price int,
+				ddate date
+			);
+		e3.表结构查看
+			desc 表名;
+			需求:查看goods表表结构
+			desc goods;
+		e4.表结构的删除
+			语法:drop table 表名;
+			需求:删除goods表
+		e5.表结构的修改
+			增加列
+			需求:bank表中增加id列，数据类型数值型
+			alter table bank add id int;
+			修改列
+			需求:bank表中id列修改为字符类型，最多10个字符
+			alter table bank modify id char(10);
+			删除列
+			需求:删除bank表中的id列
+			alter table bank drop column id;
 
 
 
