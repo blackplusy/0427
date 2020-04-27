@@ -62,4 +62,58 @@ a.常见的软件架构
 		linux 			apache       mysql
 						tomcat       mysql/oracle
 						nginx        mysql
-		
+3.搭建ecshop网店项目
+	a.集成软件
+		xampp
+			x: 任意操作系统
+			a: apache
+			m: mysql
+			p: php
+			p: perl
+		wamp
+			w: windows
+		phpstudy
+	b.phpstudy简介
+		apache    apache的主文件夹
+			bin   存放命令
+			conf  存放配置文件
+			logs  存放日志
+		mysql     mysql的主文件夹
+			bin   存放命令
+			data  存放数据
+		WWW       项目存放文件夹
+	c.服务和端口的检查
+		apache
+			主服务：httpd
+			端口：80
+		mysql
+			主服务：mysqld
+			端口：3306
+		查看进程
+			打开命令提示符(win+r--cmd)
+				tasklist | find "httpd"  查看httpd相关的进程
+				tasklist  查看当前系统中所有进程
+				|         管道，前面的输出作为后面的输入
+				find      搜索
+		查看端口
+			打开命令提示符(win+r--cmd)
+				netstat -an | find "3306"
+				netstat -an   查看系统开放的所有端口
+		0.0.0.0 任意IP
+		127.0.0.1==localhost==电脑本机
+	d.安装部署ecshop网站
+		d1.启动mysqld服务
+		d2.启动apache服务
+		d3.下载ecshop压缩包解压
+		d4.解压后的文件夹传入WWW文件夹中
+		d5.浏览器中输入127.0.0.1/ecshop1按照提示进行访问
+			注意:
+			数据库主机：localhost
+			端口号    : 3306
+			用户名    : root
+			密码      : root
+			数据库名  ： test
+
+
+
+
