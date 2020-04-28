@@ -78,11 +78,64 @@ select 列 from 表1 inner join 表2 on 表1.列=表2.列;
 		source sakila-schema.sql;
 	6>导入sakila-data.sql;
 		source sakila-data.sql;
+
 查询以C开头的国家有哪些城市?
+	select  c.city from country co,city c
+	where co.country_id=c.country_id
+	and co.country like 'C%';
+
+查询客户表中名字为MARY的所在城市?
+	select c.city  from city c,address a,customer cu
+	where c.city_id=a.city_id
+	and  a.address_id=cu.address_id
+	and cu.first_name='MARY';
+
+查询客户表中名字为MARY的所在国家?
+	select  co.country  
+	from country co,city c,address a,customer cu
+	where co.country_id=c.country_id
+	and c.city_id=a.city_id
+	and a.address_id=cu.address_id
+	and cu.first_name='MARY';
+	
+3.子查询
+	一条SQL语句的执行依赖于另外一条SQL语句的执行结果
+	需求:查询商品名称是KD876的分类名称
+		1>查询ecs_goods表中满足条件的cat_id
+			select cat_id from ecs_goods where goods_name='KD876';
+		2>查询ecs_category表中cat_id为上面查询出来结果的分类名称
+			select cat_name from ecs_category where cat_id=(select cat_id from ecs_goods where goods_name='KD876');
+	需求:查询商品的本店售价高于平均本店售价的商品名称
+		1>查询ecs_goods表中平均本店售价是多少
+			select avg(shop_price) from ecs_goods;
+		2>查询ecs_goods表中本店售价高于上面查询出来结果的商品名称
+			select goods_name from ecs_goods where shop_price>(select avg(shop_price) from ecs_goods);
+	子查询可以用于数据的新增、修改、删除、查询
+	--2.jpg
+		3>insert into achievement values((select id from student where name='Robert' ),80);
+		4>update achievement set mark=87 where id=(select id from student where name='Rose');
+		5>delete from achievement where id=(select id from student where name='Betty');
+		delete from student where name='Betty';
+	子查询可以分为单行子查询、多行子查询
+		单行子查询：查询子句返回的结果是一行   =  in
+		多行子查询：查询子句返回的结果是多行   in
+	需求：查询ecs_goods表中本店售价高于1000的所有商品分类名称
+		1>查询ecs_goods表中满足条件的cat_id
+			select cat_id from ecs_goods where shop_price>1000;
+		2>查询ecs_category表中cat_id为上面查询出来结果的分类名称
+			select cat_name from ecs_category where cat_id in (select cat_id from ecs_goods where shop_price>1000);
+
+
+查询以C开头的国家有哪些城市?
+
 
 查询客户表中名字为MARY的所在城市?
 
+
 查询客户表中名字为MARY的所在国家?
+
+
+
 
 
 
