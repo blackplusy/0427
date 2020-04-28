@@ -78,7 +78,11 @@ select 列 from 表1 inner join 表2 on 表1.列=表2.列;
 		source sakila-schema.sql;
 	6>导入sakila-data.sql;
 		source sakila-data.sql;
+查询以C开头的国家有哪些城市?
 
+查询客户表中名字为MARY的所在城市?
+
+查询客户表中名字为MARY的所在国家?
 
 
 
