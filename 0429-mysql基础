@@ -148,6 +148,28 @@ b.分页查询
 		where s.准考证号=c.准考证号
 		and s.年龄 between 20 and 35
 		order by c.准考证号 desc;
+--5.bmp
+	1.select avg(english) from mark;
+	2.select m.math,c.address,c.name,c.telno   from cust c,mark m
+		where c.studentno=m.studentno
+		and c.studentno in (11,22,33,44,55);
+--6.jpg
+	1.
+	create table user (
+		userid int(11) primary key,
+		username varchar2(20) not null,
+		password varchar2(20) not null,
+		crtime   date not null
+		);
+	2.insert into user values(1002,'admin','admin','1990-01-01');
+--qq笔试
+	1.select * from emp where deptno=30;
+	2.select ename,empno,deptno from emp;
+	3.select * from emp where comm>sal;
+	4.select * from emp where comm>sal*0.6;
+
+
+
 
 
 
