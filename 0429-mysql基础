@@ -131,6 +131,25 @@ b.分页查询
 	select z.作者姓名,t.图书名,t.出版社 from 图书 t,作者 z
 	where t.作者编号=z.作者编号
 	and z.年龄<(select avg(年龄) from 作者);
+--2.png
+	select count(*) from table1;
+	select t2.家庭住址 from table1 t1,table2 t2 where t1.学生id=t2.学生id
+	and t1.姓名 like '张%' 
+	and t1.性别='女'
+	order by t1.姓名
+--3.png
+	select * from dt_pay where salary >(select avg(salary) from dt_pay);
+	select * from dt_pay;
+	truncate table dt_pay
+--4.png
+	1.select xm,zkzh from tb_student where score>0 and score<5;
+	2.select * from tb_student whre xm='张三' and score=5;
+	3.select c.成绩表  from 学生表 s,成绩表 c
+		where s.准考证号=z.准考证号
+		and s.年龄 between 20 and 35
+		order by z.准考证号 desc;
+
+
 
 
 
