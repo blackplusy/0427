@@ -123,6 +123,14 @@ b.分页查询
 	select * from ecs_goods limit 10,10;
 	第一个10代表从11开始
 	第二个10代表步长，取几个
+--华为.jpg
+	1.select * from student order by ssex;
+	2.select * from score where degree between 80 and 100;
+--a.png
+	select avg(年龄) from 作者;
+	select z.作者姓名,t.图书名,t.出版社 from 图书 t,作者 z
+	where t.作者编号=z.作者编号
+	and z.年龄<(select avg(年龄) from 作者);
 
 
 
