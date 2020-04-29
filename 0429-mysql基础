@@ -1,0 +1,58 @@
+--7.jpg
+1>
+a.查询c表中满足条件的c#
+select c# from c where cn='税收基础';
+b.查询sc表中满足c#为上面查询出来结果的s#
+select s# from sc where c# in (select c# from c where cn='税收基础');
+c.查询s表中s#为上面查询出来结果的学号和姓名
+select s#,sn from s where s# in (select s# from sc where c# in (select c# from c where cn='税收基础'));
+2>
+a.查询sc表中满足条件的s#
+select s# from sc where c#='C2';
+b.查询s表中s#为上面查询出来结果的姓名和所属单位
+select sn,sd from s where s# in (select s# from sc where c#='C2');
+3>
+select sn,sd from s where s# in (select s# from sc where c#!='C5');
+======================================================================
+1.分组查询
+按照某种属性进行归类查询
+a.分组函数(聚合函数)
+	分组函数通常是和分组一起使用，但是也可以单独使用
+	max()     最大
+	min() 	  最小
+	avg()     平均
+	sum()     求和
+	count()   计数
+	需求:查询ecs_goods表中最高，最低市场售价
+	select max(market_price),min(market_price) from ecs_goods;
+	需求:查询商品本店售价高于平均本店售价的商品名称
+	select avg(shop_price) from ecs_goods;
+	select goods_name from ecs_goods where shop_price>(select avg(shop_price) from ecs_goods);
+b.分组查询
+	语法:select 列 from 表
+			where 条件
+				group by 分组条件
+					having 分组后过滤条件;
+	分组条件判断，通常每后面跟的都是分组条件
+	需求:查询ecs_goods表中每种分类id有多少商品
+		select cat_id,count(*)  from ecs_goods group by cat_id;
+	需求:查询ecs_goods表中每种分类下有多少商品，要求显示分类名称和商品数量
+		select c.cat_name,count(*) from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		group by c.cat_name;
+c.having 
+	where    分组前使用，不能直接跟分组函数
+	having   分组后使用，可以直接跟分组函数
+	有group by 才有having，没有group by 就没有having
+	需求:查询商品本店售价高于平均本店售价的商品名称
+	（x）select goods_name from ecs_goods where shop_price>avg(shop_price);
+	需求:查询商品数量超过3的分类名称
+		select c.cat_name,count(*) from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		group by c.cat_name
+		having count(*)>3;
+d.分组分类
+	单分组
+	双分组
+	多分组
+
