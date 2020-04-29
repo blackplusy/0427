@@ -145,9 +145,9 @@ b.分页查询
 	1.select xm,zkzh from tb_student where score>0 and score<5;
 	2.select * from tb_student whre xm='张三' and score=5;
 	3.select c.成绩表  from 学生表 s,成绩表 c
-		where s.准考证号=z.准考证号
+		where s.准考证号=c.准考证号
 		and s.年龄 between 20 and 35
-		order by z.准考证号 desc;
+		order by c.准考证号 desc;
 
 
 
