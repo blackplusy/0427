@@ -28,6 +28,8 @@ a.分组函数(聚合函数)
 	需求:查询商品本店售价高于平均本店售价的商品名称
 	select avg(shop_price) from ecs_goods;
 	select goods_name from ecs_goods where shop_price>(select avg(shop_price) from ecs_goods);
+	count(*)     * 代表所有列，计算空值
+	count(列名)  不计算空值
 b.分组查询
 	语法:select 列 from 表
 			where 条件
@@ -57,9 +59,70 @@ d.分组分类
 	多分组
 
 查询每个国家有多少个城市,要求显示国家名称,城市数量?
+		国家 国家名称
+		城市 城市名称
+	1.select * from country co,city c
+	where co.country_id=c.country_id;
+	2.select co.country,count(c.city) from country co,city c
+	where co.country_id=c.country_id
+	group by co.country;		
 
 查询每个城市有多少个客户,要求显示城市名称,客户数量(计算客户id)
-	
+	city  
+	customer_id
+	city  address customer
+	1.select * from city c,address a,customer cu
+		where c.city_id=a.city_id
+		and a.address_id=cu.address_id;
+	2.select c.city,count(cu.customer_id) from city c,address a,customer cu
+		where c.city_id=a.city_id
+		and a.address_id=cu.address_id
+		group by c.city;
 查询C开头的国家,每个国家有多少个城市
+select co.country,count(c.city) from country co,city c
+	where co.country_id=c.country_id
+	group by co.country
+	having co.country like 'C%';
+
+select co.country,count(c.city) from country co,city c
+	where co.country_id=c.country_id
+	and co.country like 'C%'
+	group by co.country;
 
 城市数量超过30的国家名称
+select co.country,count(c.city) from country co,city c
+	where co.country_id=c.country_id
+	group by co.country
+	having count(c.city)>30;
+
+2.排序和分页
+select 列 from 表
+	where 条件
+		group by 分组条件
+			having 分组后过滤条件
+				order by 排序条件
+					limit 分页条件;
+a.排序
+	顺序(从小到大)
+		order by 列;
+		order by 列 asc;
+	逆序(从大到小)
+		order by 列 desc;
+	需求:查询ecs_goods表中所有数据按照本店售价从高到低进行排列
+		select * from ecs_goods order by shop_price desc;
+	需求:查询ecs_goods表中所有数据按照市场售价顺序进行排列
+		select * from ecs_goods order by market_price;
+	排序也有双排序，多排序，多个排序条件之间用,分开
+	需求:查询ecs_goods表中所有数据先按照cat_id顺序排列，goods_id逆序排列
+	select * from ecs_goods order by cat_id,goods_id desc;
+b.分页查询
+	limit 
+	需求:查询ecs_goods表中前10条数据
+	select * from ecs_goods limit 10;
+	需求:查询ecs_goods表中11-20行数据
+	select * from ecs_goods limit 10,10;
+	第一个10代表从11开始
+	第二个10代表步长，取几个
+
+
+
