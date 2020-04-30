@@ -67,7 +67,7 @@ d.mongodb基础命令
 		查看system.version的所有文档
 e.CURD(增删改查)
 	文档的新增
-		db.xiyouji.insert({name:'5kong',age:18})
+		db.xiyouji.insert({'name':'5kong',age:18})
 		db.xiyouji.insert({name:'tangsir'})
 	文档的修改
 		db.xiyouji.update({name:'5kong'},{$set:{age:100}})
@@ -90,6 +90,18 @@ g.文档的删除
 		db.xiyouji.remove({name:'shasir'})
 	g2.删除所有文档
 		db.xiyouji.remove({})
+h.文档的查询
+	h1.查询所有文档
+		db.xiyouji.find()
+	h2.查询指定文档
+		db.xiyouji.find({age:{$gt:100}})
+		db.xiyouji.find({age:800})
+	h3.查询指定属性
+		db.xiyouji.find({},{_id:0,name:1})
+		db.xiyouji.find({},{_id:0,name:0})
+	h4.查询指定文档的指定属性
+		db.xiyouji.find({name:'puti'},{_id:0,like:1})
+
 
 
 
