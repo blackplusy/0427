@@ -1,3 +1,8 @@
+名字:heygor
+tel:18028768679
+QQ\wechat:914338492
+
+
 1.mongodb
 a.下载和安装
 	a1.下载注意：
@@ -60,8 +65,31 @@ d.mongodb基础命令
 		查看当前数据库中有哪些集合
 	db.system.version.find()
 		查看system.version的所有文档
-
-
+e.CURD(增删改查)
+	文档的新增
+		db.xiyouji.insert({name:'5kong',age:18})
+		db.xiyouji.insert({name:'tangsir'})
+	文档的修改
+		db.xiyouji.update({name:'5kong'},{$set:{age:100}})
+	文档的删除
+		db.xiyouji.remove({name:'tangsir'})
+	文档的查看
+		db.xiyouji.find()
+		db.xiyouji.find({name:'5kong'})
+f.文档的新增
+	f1.新增普通文档
+		db.xiyouji.insert({name:'shasir',job:'manong'})
+	f2.新增文档指定_id
+		db.xiyouji.insert({_id:1,name:'little white dragon'})
+	f3.新增内嵌文档
+		db.xiyouji.insert({name:'5kong',jingli:{kill:1000,hit:'8jie'}})
+	f4.新增多个文档
+		db.xiyouji.insert([{name:'nezha'},{name:'redhair'},{name:'sweety'}])
+g.文档的删除
+	g1.删除指定文档
+		db.xiyouji.remove({name:'shasir'})
+	g2.删除所有文档
+		db.xiyouji.remove({})
 
 
 
