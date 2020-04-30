@@ -1,0 +1,68 @@
+1.mongodb
+a.下载和安装
+	a1.下载注意：
+		操作系统类型
+			windows
+			linux
+			unix
+		操作系统位数
+			x64  x86_64   64位操作系统
+			i386 i686     32位操作系统
+		软件版本
+			4.2.6
+		软件包类型
+			建议zip
+	a2.mongodb软件部署
+		1>加压压缩包
+		2>设置环境变量(让系统可以找到mongodb的命令)
+			计算机--属性--高级--环境变量--系统变量--Path中添加mongodb的bin文件夹
+			;F:\迅雷下载\mongodb-win32-x86_64-2012plus-4.2.6\bin
+			确定x3
+b.启动mongodb服务
+	b1.mongodb的架构
+		c-----/-----s
+		mongo       mongod
+		mongo     	客户端服务
+		mongod  	mongodb的主服务
+	b2.mongodb的启动命令
+		md d:\data
+		mongod --dbpath d:\data
+		mongod --dbpath d:\data --logpath d:\data\mongo.log
+		--dbpath   数据存放的路径(文件夹)
+		--logpath  日志存放的位置(具体文件)
+		启动前一定保证存放数据文件夹存在
+	b3.检查服务和端口(命令提示符)
+		mongodb的主服务  mongod
+			tasklist | find "mongod"
+		mongodb的端口    27017
+			netstat -an | find "27017"
+c.mongodb的登录(命令提示符)
+	mongo
+		登录本地test数据库
+	mongo 127.0.0.1/admin
+		登录IP地址为127.0.0.1的admin数据库
+	mongo 127.0.0.1:27017/admin
+		登录IP为127.0.0.1的端口为27017的admin数据库
+d.mongodb基础命令
+	mysql     mongodb
+	数据库     数据库
+	表         集合
+	数据       文档
+	show databases
+	show dbs
+		查看当前数据库有哪些
+	db
+		查看当前数据库的名字
+	use admin
+		数据库切换为admin数据库
+	show tables
+	show collections
+		查看当前数据库中有哪些集合
+	db.system.version.find()
+		查看system.version的所有文档
+
+
+
+
+
+
