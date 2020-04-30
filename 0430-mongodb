@@ -1,139 +1,44 @@
-名字:heygor
-tel:18028768679
-QQ\wechat:914338492
+
+emp集合中有以下属性：
+ empno    员工号
+ hiredate 入职日期 
+ ename    名字
+ sal      工资
+ comm     佣金
+ deptno   部门号
 
 
-1.mongodb
-a.下载和安装
-	a1.下载注意：
-		操作系统类型
-			windows
-			linux
-			unix
-		操作系统位数
-			x64  x86_64   64位操作系统
-			i386 i686     32位操作系统
-		软件版本
-			4.2.6
-		软件包类型
-			建议zip
-	a2.mongodb软件部署
-		1>加压压缩包
-		2>设置环境变量(让系统可以找到mongodb的命令)
-			计算机--属性--高级--环境变量--系统变量--Path中添加mongodb的bin文件夹
-			;F:\迅雷下载\mongodb-win32-x86_64-2012plus-4.2.6\bin
-			确定x3
-b.启动mongodb服务
-	b1.mongodb的架构
-		c-----/-----s
-		mongo       mongod
-		mongo     	客户端服务
-		mongod  	mongodb的主服务
-	b2.mongodb的启动命令
-		md d:\data
-		mongod --dbpath d:\data
-		mongod --dbpath d:\data --logpath d:\data\mongo.log
-		--dbpath   数据存放的路径(文件夹)
-		--logpath  日志存放的位置(具体文件)
-		启动前一定保证存放数据文件夹存在
-	b3.检查服务和端口(命令提示符)
-		mongodb的主服务  mongod
-			tasklist | find "mongod"
-		mongodb的端口    27017
-			netstat -an | find "27017"
-c.mongodb的登录(命令提示符)
-	mongo
-		登录本地test数据库
-	mongo 127.0.0.1/admin
-		登录IP地址为127.0.0.1的admin数据库
-	mongo 127.0.0.1:27017/admin
-		登录IP为127.0.0.1的端口为27017的admin数据库
-d.mongodb基础命令
-	mysql     mongodb
-	数据库     数据库
-	表         集合
-	数据       文档
-	show databases
-	show dbs
-		查看当前数据库有哪些
-	db
-		查看当前数据库的名字
-	use admin
-		数据库切换为admin数据库
-	show tables
-	show collections
-		查看当前数据库中有哪些集合
-	db.system.version.find()
-		查看system.version的所有文档
-e.CURD(增删改查)
-	文档的新增
-		db.xiyouji.insert({'name':'5kong',age:18})
-		db.xiyouji.insert({name:'tangsir'})
-	文档的修改
-		db.xiyouji.update({name:'5kong'},{$set:{age:100}})
-	文档的删除
-		db.xiyouji.remove({name:'tangsir'})
-	文档的查看
-		db.xiyouji.find()
-		db.xiyouji.find({name:'5kong'})
-f.文档的新增
-	f1.新增普通文档
-		db.xiyouji.insert({name:'shasir',job:'manong'})
-	f2.新增文档指定_id
-		db.xiyouji.insert({_id:1,name:'little white dragon'})
-	f3.新增内嵌文档
-		db.xiyouji.insert({name:'5kong',jingli:{kill:1000,hit:'8jie'}})
-	f4.新增多个文档
-		db.xiyouji.insert([{name:'nezha'},{name:'redhair'},{name:'sweety'}])
-g.文档的删除
-	g1.删除指定文档
-		db.xiyouji.remove({name:'shasir'})
-	g2.删除所有文档
-		db.xiyouji.remove({})
-h.文档的查询
-	h1.查询所有文档
-		db.xiyouji.find()
-	h2.查询指定文档
-		db.xiyouji.find({age:{$gt:100}})
-		db.xiyouji.find({age:800})
-	h3.查询指定属性
-		db.xiyouji.find({},{_id:0,name:1})
-		db.xiyouji.find({},{_id:0,name:0})
-	h4.查询指定文档的指定属性
-		db.xiyouji.find({name:'puti'},{_id:0,like:1})
-i.查询表达式
-	i1.比较
-		$lt     	小于
-		$lte  		小于等于
-		$gt         大于
-		$gte        大于等于
-		$ne         不等于
-		db.xiyouji.find({age:{$gte:18}})
-		db.xiyouji.find({name:{$ne:'niumo'}})
-	i2.关系
-		$and  		同时满足
-		$or         满足一个即可
-		db.xiyouji.find({$and:[{age:{$lt:100}},{name:'gaga'}]})
-		db.xiyouji.find({$or:[{name:'puti'},{name:'gaga'}]})
-	i3.存在性
-		$exists     某个属性是否存在
-		db.xiyouji.find({age:{$exists:1}})
-		db.xiyouji.find({age:{$exists:0}})
-	i4.数据类型
-		$type
-			1.数值
-			2.字符
-			3.对象
-			4.数组
-			5.二进制数据
-			7.对象id
-			8.布尔
-			9.日期
-			10.空
-			db.xiyouji.find({age:{$type:2}})
-	i5.正则表达式
-		https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
+2.查询emp表中工资大于2500的人的所有信息
+db.emp.find({sal:{$gt:2500}})
 
+3.查询emp表中名字为ALLEN或者KING的人的工资和姓名、部门号
+db.emp.find({$or:[{ename:'ALLEN'},{ename:'KING'}]}.{_id:0,sal:1,ename:1,deptno:1})
+
+4.查询emp表中部门为20号部门或者工资大于1500并且小于2500的人的所有信息
+$and:[{sal:{$gt:1500}},{sal:{$lt:2500}}]
+db.emp.find({$or:[{deptno:20},{$and:[{sal:{$gt:1500}},{sal:{$lt:2500}}]}]})
+
+5.查询emp表中名字为KING或者部门号为30号部门的人的姓名，佣金，部门号
+db.emp.find({$or:[{ename:'KING'},{deptno:30}]},{_id:0,ename:1,comm:1,deptno:1})
+
+6.查询emp表中雇佣号为7369的人的所有信息
+db.emp.find({empno:7369})
+
+7.查询emp表中工资范围在800到1000的人或工资范围在2000到2500的人的所有信息
+$and:[{sal:{$gte:800}},{sal:{$lte:1000}}]
+$and:[{sal:{$gte:2000}},{sal:{$lte:2500}}]
+db.emp.find({$or:[{$and:[{sal:{$gte:800}},{sal:{$lte:1000}}]},{$and:[{sal:{$gte:2000}},{sal:{$lte:2500}}]}]})
+
+8.查询emp表中工资高于1500，2000，2500的任何一个的人的所有信息
+db.emp.find({$or:[{sal:{$gt:1500}},{sal:{$gt:2000}},{sal:{$gt:2500}}]})
+
+9.查询emp表中名字以AL开头的人或者佣金为空的人的所有信息
+ename:{$regex:/^AL/}
+db.emp.find({$or:[{ename:{$regex:/^AL/}},{comm:null}]})
+
+10.查询emp表中佣金不为空的人并且工资大于800，1500，2000的所有工资的人的所有信息
+$and:[{sal:{$gt:800}},{sal:{$gt:1500}},{sal:{$gt:2000}}]
+db.emp.find({$and:[{comm:{$ne:null}},{$and:[{sal:{$gt:800}},{sal:{$gt:1500}},{sal:{$gt:2000}}]}]})
 
 
 
