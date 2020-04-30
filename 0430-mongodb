@@ -133,6 +133,31 @@ i.查询表达式
 			db.xiyouji.find({age:{$type:2}})
 	i5.正则表达式
 		https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
+j.文档的修改
+	j1.修改指定文档
+		$set
+		db.xiyouji.update({name:'gaga'},{$set:{age:1000}})
+	j2.覆盖文档
+		db.xiyouji.update({name:'gaga'},{name:'simida'})
+	j3.增长
+		$inc  正数 增加 负数 减少
+		db.xiyouji.update({age:{$type:1}},{$inc:{age:119}})
+		db.xiyouji.update({age:{$type:1}},{$inc:{age:-300}})
+	j4.修改多个文档
+		默认修改只修改一行，如果需要更新多行文档，需要multi参数
+		db.xiyouji.update({age:{$type:1}},{$inc:{age:-1000}},{multi:true})
+	j5.删除指定属性
+		$unset
+		db.xiyouji.update({name:'puti'},{$unset:{'like':'葡萄'}}))
+
+
+
+
+
+
+
+
+
 
 
 emp集合中有以下属性：
